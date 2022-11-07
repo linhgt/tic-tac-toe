@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MARK } from '../../constant.js';
 import Switch from './components/switch';
-import styles from './choose-mark.module.scss';
+import styles from './mark-choice.module.scss';
 
 const MarkChoice = (props) => {
     const [mark, setMark] = useState(MARK.X);
