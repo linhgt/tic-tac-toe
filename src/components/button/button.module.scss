@@ -1,0 +1,16 @@
+.button{
+    border: none;   
+    cursor: pointer;
+    transition: background-color .25s ease-out;
+    transition: box-shadow .1s ease-out,-webkit-transform .1s ease-out;
+    transition: box-shadow .1s ease-out,transform .1s ease-out;
+    transition: box-shadow .1s ease-out,transform .1s ease-out,-webkit-transform .1s ease-out;
+    height: 67px;
+    padding: 0 30px 8px;
+    border-radius: 15px;
+    font-size: 2rem;
+    line-height: 25.2px;
+    letter-spacing: 1.25px;
+    font-weight: 700;
+    color: #1a2a33;
+}
