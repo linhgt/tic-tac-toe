@@ -6,7 +6,7 @@ const Button = (props) => {
   const { className, children, ...others } = props;
 
   return (
-    <button className={cx(className, "common-item", style.button)}>
+    <button className={cx(className, "common-item", style.button)} {...others}>
       {children}
     </button>
   );
