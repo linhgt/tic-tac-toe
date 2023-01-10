@@ -21,7 +21,7 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
-        test: /\.svg$/,
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
         use: ["url-loader"]
       }
     ],
@@ -29,7 +29,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name][contenthash].js",
-    clean: true
+    clean: true,
   },
   devServer: {
     port: 3000,
@@ -39,11 +39,22 @@ module.exports = {
     compress: true,
     historyApiFallback: true
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      // "@": path.resolve(__dirname, "src/*"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@containers": path.resolve(__dirname, "src/containers"),
+      "@router": path.resolve(__dirname, "src/router")
+    },
+  },
+  devtool: "source-map", 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       title: 'tic-tac-toe',
-      template: 'src/template.html'
+      template: path.resolve(__dirname, 'src/template.html')
     })
   ]
 };

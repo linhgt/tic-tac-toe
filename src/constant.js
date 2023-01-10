@@ -1,4 +1,4 @@
 export const MARK = {
-    X: "X",
-    O: "O"
-}
+  X: "X",
+  O: "O"
+};
