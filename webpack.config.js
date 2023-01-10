@@ -29,10 +29,15 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name][contenthash].js",
+    clean: true
   },
   devServer: {
     port: 3000,
-    static: '/dist',
+    static: {
+      directory: path.resolve(__dirname, "dist")
+    },
+    compress: true,
+    historyApiFallback: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
