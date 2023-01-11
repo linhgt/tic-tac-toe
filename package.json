@@ -4,12 +4,12 @@
   "description": "simple tic-tac-toe game",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config webpack.config.js --mode=development --open && npm run lint",
+    "start": "webpack-dev-server --config webpack.config.js --mode=development --open",
     "build": "babel src -d lib",
     "prod:build": "webpack --mode=production",
     "dev:build": "webpack --mode=development --config webpack.config.js",
     "lint": "eslint src",
-    "lint:fix": "eslint --fix",
+    "lint:fix": "eslint src --fix",
     "prettier": "prettier --config .prettierrc.json --write \"./src/**/*.{js,jsx}\"",
     "format": "npm run lint && npm run lint:fix && npm run prettier"
   },
@@ -28,6 +28,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.2",
     "prettier": "^2.8.2",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
