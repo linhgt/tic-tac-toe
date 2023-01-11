@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: {
     bundle: path.resolve(__dirname, "src/index.js")},
@@ -14,11 +15,58 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", 
+          {
+            loader: "css-loader",
+            options:{
+              modules: {
+                localIdentName: '[local]__[hash:base64:5]'
+              }
+            }
+          }
+        ]
       },
       {
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        test: /\.s(a|c)ss$/,
+        exclude: /\.module\.s(a|c)ss$/,
+        use: [
+          "style-loader", 
+          {
+            loader: "css-loader",
+            options:{
+              modules: {
+                localIdentName: '[local]__[hash:base64:5]'
+              }
+            }
+          }, 
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.module\.s(a|c)ss$/,
+        use: [
+          "style-loader", 
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: '[local]__[hash:base64:5]'
+              },
+              sourceMap: true,
+            }
+          }, 
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            }
+          }
+        ]
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
@@ -40,7 +88,7 @@ module.exports = {
     historyApiFallback: true
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.scss', '.css'],
     alias: {
       // "@": path.resolve(__dirname, "src/*"),
       "@components": path.resolve(__dirname, "src/components"),
@@ -55,6 +103,10 @@ module.exports = {
     new HtmlWebPackPlugin({
       title: 'tic-tac-toe',
       template: path.resolve(__dirname, 'src/template.html')
-    })
+    }),
+    // new MiniCssExtractPlugin ({
+    //   filename: '[name]__[hash].css',
+    //   chunkFilename: '[id]__[hash].css'
+    // })
   ]
 };
