@@ -13,7 +13,7 @@ const O = (props = {}) => {
 };
 
 const X = (props = {}) => {
-  const { style = { width: "31.75px" } } = props;q
+  const { style = { width: "31.75px" } } = props;
   return (
     <svg viewBox="0 0 64 64" style={style}>
       <path
