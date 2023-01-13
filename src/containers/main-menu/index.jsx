@@ -1,10 +1,10 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { Link } from 'react-router-dom';
 import { MARK } from "../../constant";
-import ICONS from "@assets/images/Icons";
-import Switch from "@components/switch";
+import ICONS from "@/assets/images/Icons";
+import Switch from "@/components/switch";
 import styles from "./main-menu.module.scss";
-import Button from '@components/button';
+import Button from '@/components/button';
 
 const MainMenu = () => {
   const choices = useMemo(

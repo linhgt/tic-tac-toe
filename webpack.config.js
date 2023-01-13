@@ -3,15 +3,16 @@ const webpack = require("webpack");
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
+  /**
+   * Entry is a property that indicates webpack which modules/files it should use to begin
+   * Building the internal dependency graphs of the project/application 
+   * One entry point per HTML page
+   * If a string or array of strings is passed, the chunk is named main. 
+   * If an object is passed, each key is the name of a chunk, and the value describes the entry point for the chunk.
+  */
   entry: {
-    // entry is a property that indicates webpack which modules/files it should use to begin
-    // building the internal dependency graphs of the project/application 
-
+    //  __dirname specify the directory of the current executing files
     bundle: path.resolve(__dirname, "src/index.js")},
-    /**
-     * __dirname specify the directory of the current executing files
-     */
-
   module: {
     // An array of rules which are matched to requests when modules are created
     rules: [
@@ -135,11 +136,11 @@ module.exports = {
 
     // Create aliases to import or require certain modules more easily
     alias: {
-      // "@": path.resolve(__dirname, "src/*"),
-      "@components": path.resolve(__dirname, "src/components"),
-      "@assets": path.resolve(__dirname, "src/assets"),
-      "@containers": path.resolve(__dirname, "src/containers"),
-      "@router": path.resolve(__dirname, "src/router")
+      "@": path.resolve(__dirname, "src"),
+      // "@components": path.resolve(__dirname, "src/components"),
+      // "@assets": path.resolve(__dirname, "src/assets"),
+      // "@containers": path.resolve(__dirname, "src/containers"),
+      // "@router": path.resolve(__dirname, "src/router")
     },
   },
   devtool: "source-map", 
