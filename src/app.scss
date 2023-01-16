@@ -42,8 +42,18 @@ ul {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.common-item{
-    text-align: center;
-    box-shadow: inset 0 -8px 0;
-    border-radius: 15px;
+:global(.common-item){
+  text-align: center;
+  box-shadow: inset 0 -8px 0;
+  border-radius: 15px;
+}
+
+:global(.container){
+  max-width: 508px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
