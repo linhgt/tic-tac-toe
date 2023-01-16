@@ -1,0 +1,15 @@
+.tile{
+  background: #1f3641;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -8px 0 #10212a;
+  max-height: 140px;
+  &.empty{
+    cursor: pointer;
+  }
+  &.active{
+    cursor: default;
+  }
+}

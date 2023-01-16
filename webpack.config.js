@@ -149,6 +149,9 @@ module.exports = {
    * An array of webpack plugins
    */
   plugins: [
+    new webpack.ProvidePlugin({
+      React: 'react'
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       title: 'tic-tac-toe',
