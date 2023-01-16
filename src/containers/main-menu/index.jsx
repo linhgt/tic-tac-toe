@@ -1,12 +1,15 @@
-import React, { useCallback, useMemo, useState } from "react";
-import { Link } from 'react-router-dom';
-import { MARK } from "../../constant";
+import React, { useCallback, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { _selectMark, _selectGameMode } from "@/store/tic-tac-toe";
+import { GAME_MODE, MARK } from "@/constant";
 import ICONS from "@/assets/images/Icons";
-import Switch from "@/components/switch";
+import Switch from "@/containers/main-menu/components/switch";
 import styles from "./main-menu.module.scss";
-import Button from '@/components/button';
+import Button from "@/components/button";
 
 const MainMenu = () => {
+  /** Variables */
   const choices = useMemo(
     () => ({
       type: {
@@ -27,14 +30,24 @@ const MainMenu = () => {
     }),
     []
   );
-  const [selectedMark, setSelectMark] = useState(MARK.X);
+  const selectedMark = useSelector((state) => state.ticTacToe.selectedMark);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  /** Methods */
   const _onSelectChoices = useCallback((choice) => {
-    setSelectMark(choice);
+    dispatch(_selectMark(choice));
   }, []);
 
+  const _onSelectGameMode = (e, gameMode) => {
+    e.preventDefault();
+    dispatch(_selectGameMode(gameMode));
+    navigate("/game-board");
+  };
+
+  /** Render */
   return (
-    <div className={styles["container"]}>
+    <div className={"container"}>
       <div className={styles["game-menu"]}>
         <div className={styles["game-menu__header"]}>
           <ICONS.X />
@@ -49,17 +62,25 @@ const MainMenu = () => {
           />
           <p>REMEMBER: X GOES FIRST</p>
         </div>
-        <div className={styles['game-menu__btns']}>
-          <Link style={{height: "67px"}}>          
-            <Button type="button" className={styles["vs_cpu"]}>
+        <div className={styles["game-menu__btns"]}>
+          <div style={{ height: "67px" }}>
+            <Button
+              type="button"
+              className={styles["vs_cpu"]}
+              onClick={(e) => _onSelectGameMode(e, GAME_MODE.VS_CPU)}
+            >
               NEW GAME (VS CPU)
             </Button>
-          </Link>
-          <Link style={{height: "67px"}}>   
-            <Button type="button" className={styles["vs_player"]}>
+          </div>
+          <div style={{ height: "67px" }}>
+            <Button
+              type="button"
+              className={styles["vs_player"]}
+              onClick={(e) => _onSelectGameMode(e, GAME_MODE.VS_PLAYER)}
+            >
               NEW GAME (VS PLAYER)
             </Button>
-          </Link>
+          </div>
         </div>
       </div>
     </div>
