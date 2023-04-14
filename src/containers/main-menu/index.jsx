@@ -10,6 +10,11 @@ import Button from "@/components/button";
 
 const MainMenu = () => {
   /** Variables */
+  const selectedMark = useSelector((state) => state.TicTacToe.selectedMark);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  /** Choices */
   const choices = useMemo(
     () => ({
       type: {
@@ -30,9 +35,6 @@ const MainMenu = () => {
     }),
     []
   );
-  const selectedMark = useSelector((state) => state.ticTacToe.selectedMark);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   /** Methods */
   const _onSelectChoices = useCallback((choice) => {
@@ -49,10 +51,13 @@ const MainMenu = () => {
   return (
     <div className={"container"}>
       <div className={styles["game-menu"]}>
+        {/* Header */}
         <div className={styles["game-menu__header"]}>
           <ICONS.X />
           <ICONS.O />
         </div>
+
+        {/* Selections */}
         <div className={styles["game-menu__marks-card"]}>
           <h1>Pick player 1's mark</h1>
           <Switch
@@ -62,7 +67,10 @@ const MainMenu = () => {
           />
           <p>REMEMBER: X GOES FIRST</p>
         </div>
+
+        {/* Buttons */}
         <div className={styles["game-menu__btns"]}>
+          {/* VS CPU */}
           <div style={{ height: "67px" }}>
             <Button
               type="button"
@@ -72,6 +80,8 @@ const MainMenu = () => {
               NEW GAME (VS CPU)
             </Button>
           </div>
+
+          {/* VS PLAYER */}
           <div style={{ height: "67px" }}>
             <Button
               type="button"
