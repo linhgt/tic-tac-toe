@@ -32,7 +32,10 @@ const Switch = (props = {}) => {
         ? listChoice.list.map((choice) => (
             <div
               key={listChoice.type[choice].id}
-              className={cx(styles["choice"], styles[listChoice.type[choice].name])}
+              className={cx(
+                styles["choice"],
+                styles[listChoice.type[choice].name]
+              )}
               onClick={(e) => _onClickButton(e, choice)}
             >
               {listChoice.type[choice].content()}

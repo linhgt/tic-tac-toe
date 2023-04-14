@@ -1,10 +1,10 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { MARK } from "../../constant";
 import ICONS from "@/assets/images/Icons";
 import Switch from "@/components/switch";
 import styles from "./main-menu.module.scss";
-import Button from '@/components/button';
+import Button from "@/components/button";
 
 const MainMenu = () => {
   const choices = useMemo(
@@ -49,13 +49,13 @@ const MainMenu = () => {
           />
           <p>REMEMBER: X GOES FIRST</p>
         </div>
-        <div className={styles['game-menu__btns']}>
-          <Link style={{height: "67px"}}>          
+        <div className={styles["game-menu__btns"]}>
+          <Link style={{ height: "67px" }}>
             <Button type="button" className={styles["vs_cpu"]}>
               NEW GAME (VS CPU)
             </Button>
           </Link>
-          <Link style={{height: "67px"}}>   
+          <Link style={{ height: "67px" }}>
             <Button type="button" className={styles["vs_player"]}>
               NEW GAME (VS PLAYER)
             </Button>
