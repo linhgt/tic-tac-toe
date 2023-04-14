@@ -1,5 +1,3 @@
-import React from "react";
-
 const O = (props = {}) => {
   const { style = { width: "31.75px" } } = props;
   return (

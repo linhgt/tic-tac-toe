@@ -1,6 +1,5 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import cx from "classnames";
-import { MARK } from "../../constant";
 import styles from "./switch.module.scss";
 
 const Switch = (props = {}) => {
@@ -14,19 +13,9 @@ const Switch = (props = {}) => {
     [_onSelectChoices]
   );
 
-  const isSelected = useCallback(
-    (choice) => {
-      return choice === selectedChoice;
-    },
-    [selectedChoice]
-  );
-
   return (
     <div
-      className={cx(styles["switch"], {
-        [styles.x]: selectedChoice === MARK.X,
-        [styles.o]: selectedChoice === MARK.O
-      })}
+      className={cx(styles["switch"], styles[listChoice.type[selectedChoice].name])}
     >
       {listChoice && listChoice.list.length > 0
         ? listChoice.list.map((choice) => (
