@@ -1,15 +1,16 @@
 .tile{
-  background: #1f3641;
-  border-radius: 15px;
+  border: none;
+  max-width: 20rem;
+  width: 100%;
+  border-radius: 1.5rem;
+  background-color: #1F3641;
+  box-shadow: 0px 8px rgba(0,0,0,0.4);
+  cursor: pointer;
   display: flex;
-  align-items: center;
+  -webkit-box-pack: center;
   justify-content: center;
-  box-shadow: inset 0 -8px 0 #10212a;
-  max-height: 140px;
-  &.empty{
-    cursor: pointer;
-  }
-  &.active{
-    cursor: default;
-  }
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 3.8rem;
+  transition: none 0s ease 0s;
 }
