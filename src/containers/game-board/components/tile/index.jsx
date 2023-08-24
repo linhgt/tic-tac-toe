@@ -1,10 +1,10 @@
 import styles from "./tile.module.scss";
 
-const Tile = (props) => {
-  const { isVictory = false, selected = {} } = props;
+const Tile = ({ value, handleClickTile }) => {
   return (
-    <div className={styles["tile"]}>
-    </div>
+    <button className={styles["tile"]} onClick={handleClickTile}>
+      {value}
+    </button>
   )
 }
 
