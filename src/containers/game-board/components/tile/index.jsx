@@ -1,3 +1,4 @@
+import ICONS from "@/assets/images/Icons";
 import styles from "./tile.module.scss";
 
 const Tile = ({ value, handleClickTile }) => {

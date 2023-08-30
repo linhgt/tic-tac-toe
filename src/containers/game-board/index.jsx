@@ -1,6 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { MARK } from "@/constant";
+import { useState } from 'react';
 import Tile from './components/tile';
 import styles from './game-board.module.scss';
 import ICONS from "@/assets/images/Icons";
@@ -11,17 +9,6 @@ const GameBoard = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
 
-	const renderIcon = () => {
-		// switch(selectedMark) {
-		// 	case MARK.X:
-		// 		return <ICONS.X fill="#a8bfc9"/>
-		// 	case MARK.O:
-		// 		return <ICONS.O fill="#a8bfc9"/>
-		// 	default:
-		// 		return null
-		// }
-	}
-
   const handleClick = (i) => {
     if(board[i]) {
       return;
@@ -29,9 +16,9 @@ const GameBoard = () => {
 
     const nextBoard = board.slice() // Create a new copy of board's state
     if(isXNext) {
-      nextBoard[i] = "X";
+      nextBoard[i] = <ICONS.X />;
     } else {
-      nextBoard[i] = "O";
+      nextBoard[i] = <ICONS.O />;
     }
     setBoard(nextBoard);
     setIsXNext(!isXNext);
@@ -50,7 +37,7 @@ const GameBoard = () => {
         <ICONS.O />
       </div>
       <div className={styles["turn"]}>
-        {renderIcon()}
+        {isXNext ? <ICONS.X /> : <ICONS.O />}
         <span>Turn</span>
       </div>
       <button className={styles["restart"]} onClick={() => handleRestart()}>
