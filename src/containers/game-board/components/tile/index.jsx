@@ -4,7 +4,7 @@ import styles from "./tile.module.scss";
 const Tile = ({ value, handleClickTile }) => {
   return (
     <button className={styles["tile"]} onClick={handleClickTile}>
-      {value}
+      {value === "X" ? <ICONS.X /> : (value === "O" ? <ICONS.O/> : value)}
     </button>
   )
 }

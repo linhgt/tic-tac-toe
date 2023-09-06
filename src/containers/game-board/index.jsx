@@ -1,27 +1,46 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Tile from './components/tile';
 import styles from './game-board.module.scss';
 import ICONS from "@/assets/images/Icons";
 import cx from 'classnames';
 
+
 const GameBoard = () => {
 	/** Variables */
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
+  const winner = calculateWinner(board);
+  const [score, setScore] = useState(Array(3).fill(0));
 
   const handleClick = (i) => {
-    if(board[i]) {
+    if(board[i] || winner || (!winner && !board.some(tile => tile == null))) {
       return;
     }
 
     const nextBoard = board.slice() // Create a new copy of board's state
     if(isXNext) {
-      nextBoard[i] = <ICONS.X />;
+      nextBoard[i] = "X";
     } else {
-      nextBoard[i] = <ICONS.O />;
+      nextBoard[i] = "O";
     }
     setBoard(nextBoard);
     setIsXNext(!isXNext);
+  }
+
+  useEffect(() => {
+    handleSetScore(winner, score);
+  }, [winner])
+
+  const handleSetScore = (winner, score) => {
+    const nextScore = score.slice();
+    if(winner === "X"){
+      nextScore[0]++;
+    } else if(winner === "O") {
+      nextScore[2]++;
+    } else if(!winner && !board.some(tile => tile == null)) {
+      nextScore[1]++;
+    }
+    setScore(nextScore);
   }
 
   const handleRestart = () => {
@@ -61,12 +80,43 @@ const GameBoard = () => {
 	  </div>
 
     <div className={styles["footer"]}>
-      <div className={cx(styles["x-score"], styles["tabs"])}>{}</div>
-      <div className={cx(styles["tie-score"], styles["tabs"])}>{}</div>
-      <div className={cx(styles["o-score"], styles["tabs"])}>{}</div>
+      <div className={cx(styles["x-score"], styles["tabs"])}>
+        <div>X (P1)</div>
+        <span>{score[0]}</span>
+      </div>
+      <div className={cx(styles["tie-score"], styles["tabs"])}>
+        <div>Ties</div>
+        <span>{score[1]}</span>
+      </div>
+      <div className={cx(styles["o-score"], styles["tabs"])}>
+        <div>O (P2)</div>
+        <span>{score[2]}</span>
+      </div>
 	  </div>
 	</div>
 	)
 };
+
+function calculateWinner (board) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
+
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return board[a]
+    }
+  } 
+
+  return null
+}
 
 export default GameBoard;
