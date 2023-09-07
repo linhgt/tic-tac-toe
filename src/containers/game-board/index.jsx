@@ -9,11 +9,11 @@ const GameBoard = () => {
 	/** Variables */
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true);
-  const winner = calculateWinner(board);
+  const [finish, setFinish] = useState(false);
   const [score, setScore] = useState(Array(3).fill(0));
 
   const handleClick = (i) => {
-    if(board[i] || winner || (!winner && !board.some(tile => tile == null))) {
+    if(board[i] || finish) {
       return;
     }
 
@@ -25,11 +25,16 @@ const GameBoard = () => {
     }
     setBoard(nextBoard);
     setIsXNext(!isXNext);
+
+    const winner = calculateWinner(nextBoard);
+    if(winner || (!winner && !nextBoard.some(tile => tile === null))) {
+      setFinish(true);
+      handleSetScore(winner, score, nextBoard);
+    }
   }
 
-  useEffect(() => {
-    handleSetScore(winner, score, board);
-  }, [winner, board])
+  // useEffect(() => {
+  // }, [winner, board])
 
   const handleSetScore = (winner, score, board) => {
     const nextScore = score.slice();
@@ -45,6 +50,7 @@ const GameBoard = () => {
 
   const handleRestart = () => {
     setBoard(Array(9).fill(null));
+    setFinish(false);
   }
 
 	/** Render */
