@@ -28,10 +28,10 @@ const GameBoard = () => {
   }
 
   useEffect(() => {
-    handleSetScore(winner, score);
-  }, [winner])
+    handleSetScore(winner, score, board);
+  }, [winner, board])
 
-  const handleSetScore = (winner, score) => {
+  const handleSetScore = (winner, score, board) => {
     const nextScore = score.slice();
     if(winner === "X"){
       nextScore[0]++;
