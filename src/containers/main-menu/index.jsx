@@ -59,7 +59,7 @@ const MainMenu = () => {
 
         {/* Selections */}
         <div className={styles["game-menu__marks-card"]}>
-          <h1>Pick player 1's mark</h1>
+          <h1>PICK PLAYER 1'S MARK</h1>
           <Switch
             listChoice={choices}
             selectedChoice={selectedMark}

@@ -33,9 +33,6 @@ const GameBoard = () => {
     }
   }
 
-  // useEffect(() => {
-  // }, [winner, board])
-
   const handleSetScore = (winner, score, board) => {
     const nextScore = score.slice();
     if(winner === "X"){
@@ -74,15 +71,15 @@ const GameBoard = () => {
     </div>
 
     <div className={styles["tiles"]}>
-      <Tile value={board[0]} handleClickTile={() => handleClick(0)}></Tile>
-      <Tile value={board[1]} handleClickTile={() => handleClick(1)}></Tile>
-      <Tile value={board[2]} handleClickTile={() => handleClick(2)}></Tile>
-      <Tile value={board[3]} handleClickTile={() => handleClick(3)}></Tile>
-      <Tile value={board[4]} handleClickTile={() => handleClick(4)}></Tile>
-      <Tile value={board[5]} handleClickTile={() => handleClick(5)}></Tile>
-      <Tile value={board[6]} handleClickTile={() => handleClick(6)}></Tile>
-      <Tile value={board[7]} handleClickTile={() => handleClick(7)}></Tile>
-      <Tile value={board[8]} handleClickTile={() => handleClick(8)}></Tile>
+      <Tile value={board[0]} handleClickTile={() => handleClick(0)} isXNext={isXNext}></Tile>
+      <Tile value={board[1]} handleClickTile={() => handleClick(1)} isXNext={isXNext}></Tile>
+      <Tile value={board[2]} handleClickTile={() => handleClick(2)} isXNext={isXNext}></Tile>
+      <Tile value={board[3]} handleClickTile={() => handleClick(3)} isXNext={isXNext}></Tile>
+      <Tile value={board[4]} handleClickTile={() => handleClick(4)} isXNext={isXNext}></Tile>
+      <Tile value={board[5]} handleClickTile={() => handleClick(5)} isXNext={isXNext}></Tile>
+      <Tile value={board[6]} handleClickTile={() => handleClick(6)} isXNext={isXNext}></Tile>
+      <Tile value={board[7]} handleClickTile={() => handleClick(7)} isXNext={isXNext}></Tile>
+      <Tile value={board[8]} handleClickTile={() => handleClick(8)} isXNext={isXNext}></Tile>
 	  </div>
 
     <div className={styles["footer"]}>
