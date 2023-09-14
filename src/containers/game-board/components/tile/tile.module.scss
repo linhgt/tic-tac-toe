@@ -13,4 +13,12 @@
   transition: none 0s ease 0s;
   overflow: hidden;  /* NEW */
   min-width: 0; 
+  &.x_win {
+    background-color: rgb(49, 195, 189);
+    box-shadow: rgb(17, 140, 135) 0px -0.5em 0px inset;
+  }
+  &.o_win {
+    background-color: rgb(242, 177, 55);
+    box-shadow: rgb(204, 139, 19) 0px -0.5em 0px inset;
+  }
 }

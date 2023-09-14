@@ -2,39 +2,71 @@ import ICONS from "@/assets/images/Icons";
 import styles from "./tile.module.scss";
 import IconXHover from "@/assets/images/icon-x-outline.svg";
 import IconOHover from "@/assets/images/icon-o-outline.svg";
-import { useState } from 'react';
+import cx from "classnames";
+import { useState } from "react";
 
-const Tile = ({ value, handleClickTile, isXNext }) => {
+const Tile = ({ tileData, handleClickTile, isXNext }) => {
   const [hover, setHover] = useState(false);
 
   const handleMouseHover = (isHover) => {
-    if(value) {
+    if (tileData) {
       return;
     }
     setHover(isHover);
-  }
-  
+  };
+
   const renderHover = (isXNext) => {
-    if(isXNext) {
-      return <img src={IconXHover} alt="x-outline" />
+    if (isXNext) {
+      return <img src={IconXHover} alt="x-outline" />;
     } else if (!isXNext) {
-      return <img src={IconOHover} alt="o-outline" />
+      return <img src={IconOHover} alt="o-outline" />;
     } else {
       return null;
     }
-  }
+  };
 
   return (
-    <button 
-      className={styles["tile"]} 
-      onClick={()=>{setHover(false); handleClickTile()}} 
-      onMouseEnter={() => handleMouseHover(true)} 
+    <button
+      className={cx(styles["tile"], {
+        [styles["x_win"]]: tileData && tileData.win && tileData.value === "X",
+        [styles["o_win"]]: tileData && tileData.win && tileData.value === "O"
+      })}
+      onClick={() => {
+        setHover(false);
+        handleClickTile();
+      }}
+      onMouseEnter={() => handleMouseHover(true)}
       onMouseLeave={() => handleMouseHover(false)}
     >
-      {value === "X" ? <ICONS.X style={{width: "64.67px"}} fill={"#31C3BD"} /> : value === "O" ? <ICONS.O style={{width: "64.67px"}} fill="#F2B137"/> : value}
-      {hover ? 
-        renderHover(isXNext) : null
-      }
+      {tileData &&
+        (tileData.value === "X" ? (
+          <ICONS.X
+            style={{
+              width: "64.67px",
+              ...(tileData &&
+                tileData.win && {
+                  filter:
+                    "brightness(0) saturate(100%) invert(18%) sepia(17%) saturate(1124%) hue-rotate(155deg) brightness(93%) contrast(93%)"
+                })
+            }}
+            fill={"#31C3BD"}
+          />
+        ) : tileData.value === "O" ? (
+          <ICONS.O
+            style={{
+              width: "64.67px",
+              ...(tileData &&
+                tileData.win && {
+                  filter:
+                    "brightness(0) saturate(100%) invert(18%) sepia(17%) saturate(1124%) hue-rotate(155deg) brightness(93%) contrast(93%)"
+                })
+            }}
+            fill="#F2B137"
+          />
+        ) : (
+          tileData.value
+        ))}
+      {hover ? renderHover(isXNext) : null}
     </button>
   );
 };
