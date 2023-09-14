@@ -25,8 +25,13 @@ const Tile = ({ value, handleClickTile, isXNext }) => {
   }
 
   return (
-    <button className={styles["tile"]} onClick={()=>{setHover(false); handleClickTile()}} onMouseEnter={() => handleMouseHover(true)} onMouseLeave={() => handleMouseHover(false)}>
-      {value === "X" ? <ICONS.X /> : value === "O" ? <ICONS.O /> : value}
+    <button 
+      className={styles["tile"]} 
+      onClick={()=>{setHover(false); handleClickTile()}} 
+      onMouseEnter={() => handleMouseHover(true)} 
+      onMouseLeave={() => handleMouseHover(false)}
+    >
+      {value === "X" ? <ICONS.X style={{width: "64.67px"}} fill={"#31C3BD"} /> : value === "O" ? <ICONS.O style={{width: "64.67px"}} fill="#F2B137"/> : value}
       {hover ? 
         renderHover(isXNext) : null
       }
