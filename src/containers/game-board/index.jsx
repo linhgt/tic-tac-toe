@@ -2,6 +2,7 @@ import { useState } from "react";
 import Tile from "./components/tile";
 import styles from "./game-board.module.scss";
 import ICONS from "@/assets/images/Icons";
+import Result from "@/containers/result";
 import cx from "classnames";
 
 const GameBoard = () => {
@@ -52,6 +53,7 @@ const GameBoard = () => {
   /** Render */
   return (
     <div className="container">
+      {finish && <Result />}
       <div className={styles["header"]}>
         <div className={styles["icons"]}>
           <ICONS.X />
