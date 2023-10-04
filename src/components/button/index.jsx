@@ -1,11 +1,11 @@
 import cx from "classnames";
-import style from "./button.module.scss";
+import s from "./button.module.scss";
 
 const Button = (props) => {
   const { className, children, ...others } = props;
 
   return (
-    <button className={cx(className, "common-item", style.button)} {...others}>
+    <button className={cx(className, "common-item", s.button)} {...others}>
       {children}
     </button>
   );

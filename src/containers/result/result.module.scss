@@ -1,3 +1,8 @@
+@mixin button-color($backgroundColor, $boxShadow) {
+    background-color: $backgroundColor;
+    box-shadow: $boxShadow;
+}
+
 .layout-mask{
     width: 100vw;
     height: 100vh;
@@ -16,4 +21,28 @@
     align-items: center;
     flex-direction: column;
     background-color: #1f3641;
+    gap:20px;
+    &__announcement {
+        color: #a8bfc9;
+    }
+    &__winner {
+        display: flex;
+        align-items: center;
+        .who-won {
+            margin-left: 20px;
+            font-size: 40px;
+            color: rgb(49, 195, 189);
+            font-weight: 700;
+        }
+    }
+    &__action {
+        display: flex;
+        gap: 20px;
+        .quit {
+            @include button-color(#a8bfc9, inset 0 -0.25em 0 #6b8997);
+        }
+        .next-round {
+            @include button-color(#f2b137, inset 0 -0.25em 0 #cc8b13);
+        }
+    }
 }
